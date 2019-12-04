@@ -1,10 +1,8 @@
 <template>
   <div>
-    Register
+    Register注册页
   </div>
 </template>
 <script>
-export default {
-  
-}
+export default {};
 </script>
