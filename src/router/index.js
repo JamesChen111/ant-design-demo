@@ -111,6 +111,71 @@ const routes = [
             ]
           }
         ]
+      },
+      // Exception
+      {
+        path: "/exception",
+        name: "exception",
+        component: { render: h => h("router-view") },
+        redirect: "/exception/403",
+        meta: { title: "异常页", icon: "warning", authority: ["admin"] },
+        children: [
+          {
+            path: "/exception/403",
+            name: "exception403",
+            component: () =>
+              import(
+                /* webpackChunkName: "exception" */ "@/views/Exception/403"
+              ),
+            meta: { title: "403" }
+          },
+          {
+            path: "/exception/404",
+            name: "exception404",
+            component: () =>
+              import(
+                /* webpackChunkName: "exception" */ "@/views/Exception/404"
+              ),
+            meta: { title: "404" }
+          },
+          {
+            path: "/exception/500",
+            name: "exception500",
+            component: () =>
+              import(
+                /* webpackChunkName: "exception" */ "@/views/Exception/500"
+              ),
+            meta: { title: "500" }
+          }
+        ]
+      },
+      // Profile
+      {
+        path: "/profile",
+        name: "profile",
+        component: { render: h => h("router-view") },
+        redirect: "/profile/basic",
+        meta: { title: "详情页", icon: "profile", authority: ["admin"] },
+        children: [
+          {
+            path: "/profile/basic",
+            name: "basic",
+            component: () =>
+              import(
+                /* webpackChunkName: "profile" */ "@/views/Profile/BasicProfile"
+              ),
+            meta: { title: "基础详情页" }
+          },
+          {
+            path: "/profile/advanced",
+            name: "advanced",
+            component: () =>
+              import(
+                /* webpackChunkName: "profile" */ "@/views/Profile/AdvancedProfile"
+              ),
+            meta: { title: "高级详情页" }
+          }
+        ]
       }
     ]
   },
