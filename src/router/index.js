@@ -41,6 +41,11 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "layouts" */ "../layouts/BasicLayout.vue"),
     children: [
+      //dashboard
+      {
+        path: "/",
+        redirect: "/dashboard/analysis"
+      },
       {
         path: "/dashboard",
         name: "dashboard",

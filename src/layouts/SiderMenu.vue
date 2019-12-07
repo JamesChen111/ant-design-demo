@@ -8,11 +8,15 @@
       :inlineCollapsed="collapsed"
     >
       <template v-for="item in menuData">
-        <a-menu-item v-if="!item.children" :key="item.path">
+        <a-menu-item
+          v-if="!item.children"
+          :key="item.path"
+          @click="() => $router.push({ path: item.path, query: $route.query })"
+        >
           <a-icon v-if="item.meta.icon" :type="item.meta.icon"></a-icon>
           <span>{{ item.meta.title }}</span>
         </a-menu-item>
-        <sub-menu v-else :menu-info="item" :key="item.path"></sub-menu>
+        <sub-menu v-else :menuInfo="item" :key="item.path"></sub-menu>
       </template>
     </a-menu>
   </div>
@@ -37,6 +41,9 @@ export default {
       menuData
     };
   },
+  mounted() {
+    console.log(this.menuData);
+  },
   methods: {
     toggleCollapsed() {
       this.collapsed = !this.collapsed;
@@ -46,7 +53,6 @@ export default {
       const menuData = [];
       routes.forEach(item => {
         if (item.name && !item.hideInMenu) {
-          debugger;
           const newItem = { ...item };
           delete newItem.children;
           if (item.children && !item.hideChildrenInMenu) {
