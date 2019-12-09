@@ -1,7 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Nprogress from "nprogress";
+import findLast from "lodash/findLast";
+import { notification } from "ant-design-vue";
 import "nprogress/nprogress.css";
+import { check, isLogin } from "../utils/auth";
 
 Vue.use(VueRouter);
 
@@ -160,7 +163,7 @@ const routes = [
         name: "profile",
         component: { render: h => h("router-view") },
         redirect: "/profile/basic",
-        meta: { title: "详情页", icon: "profile", authority: ["admin"] },
+        meta: { title: "详情页", icon: "profile" },
         children: [
           {
             path: "/profile/basic",
@@ -210,6 +213,23 @@ router.beforeEach((to, from, next) => {
   // to and from are both route objects. must call `next`.
   if (to.path !== from.path) {
     Nprogress.start();
+  }
+  const record = findLast(to.matched, item => item.meta.authority);
+  if (record && !check(record.meta.authority)) {
+    if (!isLogin() && to.path !== "/user/login") {
+      next({
+        path: "/user/login"
+      });
+    } else if (to.path !== "403") {
+      notification.error({
+        message: "403",
+        description: "您没有权限浏览该页面，请联系管理员获取权限"
+      });
+      next({
+        path: "/403"
+      });
+    }
+    Nprogress.done();
   }
   next();
 });

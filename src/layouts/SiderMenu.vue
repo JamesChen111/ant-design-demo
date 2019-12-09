@@ -24,6 +24,7 @@
 
 <script>
 import SubMenu from "./SubMenu";
+import { check } from "../utils/auth";
 export default {
   props: {
     navTheme: {
@@ -42,16 +43,19 @@ export default {
     };
   },
   mounted() {
-    console.log(this.menuData);
+    // console.log(this.menuData);
   },
   methods: {
     toggleCollapsed() {
       this.collapsed = !this.collapsed;
     },
     getMenuData(routes = []) {
-      console.log("routes", routes);
       const menuData = [];
-      routes.forEach(item => {
+      for (let item of routes) {
+        if (item.meta && item.meta.authority && !check(item.meta.authority)) {
+          continue;
+        }
+        // routes.forEach(item => {
         if (item.name && !item.hideInMenu) {
           const newItem = { ...item };
           delete newItem.children;
@@ -66,7 +70,10 @@ export default {
         ) {
           menuData.push(...this.getMenuData(item.children));
         }
-      });
+        // }
+        // );
+      }
+
       // console.log(menuData)
       return menuData;
     }
