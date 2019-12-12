@@ -43,7 +43,7 @@ export default {
     };
   },
   mounted() {
-    // console.log(this.menuData);
+    console.log(this.menuData);
   },
   methods: {
     toggleCollapsed() {
