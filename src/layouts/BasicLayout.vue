@@ -20,6 +20,7 @@
       <a-layout>
         <a-layout-header :style="{ background: '#fff', padding: 0 }">
           <a-icon
+            v-auth="['admin']"
             class="trigger"
             :type="collapsed ? 'menu-unfold' : 'menu-fold'"
             @click="() => (collapsed = !collapsed)"
@@ -30,7 +31,9 @@
           :style="{ margin: '24px 16px 0', overflow: 'initial' }"
         >
           <div :style="{ padding: '24px', background: '#fff' }">
-            <Setting />
+            <Authorized :authority="['admin']">
+              <Setting />
+            </Authorized>
             <router-view></router-view>
           </div>
         </a-layout-content>

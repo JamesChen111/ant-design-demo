@@ -42,9 +42,9 @@ export default {
       menuData
     };
   },
-  mounted() {
-    console.log(this.menuData);
-  },
+  // mounted() {
+  //   console.log(this.menuData);
+  // },
   methods: {
     toggleCollapsed() {
       this.collapsed = !this.collapsed;
