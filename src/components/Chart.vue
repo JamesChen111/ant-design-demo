@@ -16,19 +16,28 @@ export default {
   data() {
     return {};
   },
+  watch: {
+    option(val) {
+      this.chart.setOption(val);
+    }
+    // option: {
+    //   handler(val) {
+    //     this.chart.setOption(val);
+    //   },
+    //   deep: true
+    // }
+  },
   created() {
     this.resize = debounce(this.resize, 300);
   },
   mounted() {
     this.chart();
     addListener(this.$refs.chartDom, this.resize);
-    console.log(this.chart);
   },
   beforeDestroy() {
     removeListener(this.$refs.chartDom, this.resize);
     this.chart.dispose();
     this.chart = null;
-    console.log("销毁了", this.chart);
   },
   methods: {
     chart() {
@@ -37,7 +46,6 @@ export default {
       this.chart.setOption(this.option);
     },
     resize() {
-      console.log("resize");
       this.chart.resize();
     }
   }

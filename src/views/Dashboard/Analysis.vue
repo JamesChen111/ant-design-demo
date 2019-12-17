@@ -6,6 +6,7 @@
 
 <script>
 import Chart from "../../components/Chart";
+import random from "lodash/random";
 export default {
   components: {
     Chart
@@ -33,6 +34,17 @@ export default {
         ]
       }
     };
+  },
+  mounted() {
+    this.interval = setInterval(() => {
+      this.option.series[0].data = this.option.series[0].data.map(() =>
+        random(100)
+      );
+      this.option = { ...this.option };
+    }, 3000);
+  },
+  beforeDestroy() {
+    clearInterval(this.interval);
   }
 };
 </script>
