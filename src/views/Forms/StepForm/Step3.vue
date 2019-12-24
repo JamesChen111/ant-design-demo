@@ -1,6 +1,6 @@
 <template>
   <div>
-    分步3
+    买家已付款
   </div>
 </template>
 

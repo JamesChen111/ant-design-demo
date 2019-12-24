@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import auth from "./directive/auth";
 import Authorized from "./components/Authorized";
+import "./mock";
 import {
   Button,
   Layout,
