@@ -18,11 +18,11 @@ const mutations = {
 };
 
 const actions = {
-  async submitForm({ commit }, { payload }) {
+  async submitForm({ commit }, payload) {
     await request({
       url: "/api/form",
       method: "POST",
-      data: payload
+      data: payload.payload
     });
     commit("saveStepFormData", payload);
     router.push("/form/step-form/result");

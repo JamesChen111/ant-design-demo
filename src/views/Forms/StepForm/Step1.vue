@@ -16,6 +16,13 @@
         placeholder="请输入付款账号"
       />
     </a-form-item>
+    <a-form-item
+      label="收款账户"
+      :label-col="{ span: 5 }"
+      :wrapper-col="{ span: 12 }"
+    >
+      <receiver-account></receiver-account>
+    </a-form-item>
     <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
       <a-button type="primary" @click="handleSubmit">
         下一步
@@ -25,7 +32,9 @@
 </template>
 
 <script>
+import ReceiverAccount from "@/components/ReceiverAccount";
 export default {
+  components: { ReceiverAccount },
   data() {
     return {
       formLayout: "horizontal",

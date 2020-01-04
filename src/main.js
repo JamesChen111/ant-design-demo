@@ -13,7 +13,8 @@ import {
   Drawer,
   Radio,
   Form,
-  Input
+  Input,
+  Select
 } from "ant-design-vue";
 Vue.use(Button);
 Vue.use(Layout);
@@ -24,6 +25,7 @@ Vue.use(Radio);
 Vue.use(auth);
 Vue.use(Form);
 Vue.use(Input);
+Vue.use(Select);
 Vue.component("Authorized", Authorized);
 Vue.config.productionTip = false;
 
